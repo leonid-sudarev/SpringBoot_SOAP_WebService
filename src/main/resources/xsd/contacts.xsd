@@ -1,0 +1,119 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:tns="http://www.diasoft.com/contacts-ws"
+  targetNamespace="http://www.diasoft.com/contacts-ws"
+  elementFormDefault="qualified">
+
+  <!--get-->
+  <xs:element name="getContactByIdRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="id" type="xs:long"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="getContactByIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="serviceStatus" type="tns:serviceStatus"/>
+        <xs:element name="contact" type="tns:contact"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="getAllContactsRequest">
+    <xs:complexType/>
+  </xs:element>
+
+  <xs:element name="getAllContactsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="contact" type="tns:contact" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!--add-->
+  <xs:element name="addContactRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="number" type="xs:string"/>
+        <xs:element name="type" type="xs:string"/>
+        <xs:element name="person" type="tns:person"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="addContactResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="serviceStatus" type="tns:serviceStatus"/>
+        <xs:element name="contact" type="tns:contact"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!--update-->
+  <xs:element name="updateContactRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="contact" type="tns:contact"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="updateContactResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="serviceStatus" type="tns:serviceStatus"/>
+        <xs:element name="contact" type="tns:contact"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!--delete-->
+  <xs:element name="deleteContactRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="id" type="xs:long"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="deleteContactResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="serviceStatus" type="tns:serviceStatus"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!--  complex types-->
+  <xs:complexType name="serviceStatus">
+    <xs:sequence>
+      <xs:element name="statusCode" type="xs:string"/>
+      <xs:element name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="contact">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long"/>
+      <xs:element name="number" type="xs:string"/>
+      <xs:element name="type" type="xs:string"/>
+      <xs:element name="person" type="tns:person"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="person">
+    <xs:sequence>
+      <xs:element name="first_name" type="xs:string"/>
+      <xs:element name="last_name" type="xs:string"/>
+      <xs:element name="middle_name" type="xs:string"/>
+      <xs:element name="position" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+
+
